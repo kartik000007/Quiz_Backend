@@ -10,8 +10,8 @@ Answer Submission: Users can submit their answers, and their performance is eval
 Quiz Summary: A detailed summary is provided at the end of the quiz.
 
 Update the database configuration in src/main/resources/application.properties:
-properties
-Copy code
+<br>
+properties<br>
 spring.datasource.url=jdbc:h2:mem:GK_Quiz_DB
 spring.datasource.driverClassName=org.h2.Driver
 spring.h2.console.enabled=true
