@@ -29,11 +29,11 @@ The application will be available at: http://localhost:8080<br>
 <body>
     <h1>API Endpoints</h1>
 
-    <h2>1. Start Quiz Session</h2>
-    <p><strong>POST</strong> <code>/api/quiz/start</code></p>
+    1. Start Quiz Session
+    <strong>POST</strong>/api/quiz/start
 
-    <h3>Request Body:</h3>
-    <pre><code>
+    Request Body:
+    
 {
   "userId": 1,
   "difficulty": "MEDIUM",
