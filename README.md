@@ -12,11 +12,13 @@ Quiz Summary: A detailed summary is provided at the end of the quiz.
 Update the database configuration in src/main/resources/application.properties:
 <br>
 properties<br>
-spring.datasource.url=jdbc:h2:mem:GK_Quiz_DB
-spring.datasource.driverClassName=org.h2.Driver
-spring.h2.console.enabled=true
-
-The application will be available at: http://localhost:8080
+spring.datasource.url=jdbc:h2:mem:GK_Quiz_DB<br>
+spring.datasource.driverClassName=org.h2.Driver<br>
+spring.h2.console.enabled=true<br>
+<br>
+<br>
+The application will be available at: http://localhost:8080<br>
+<br>
 API Endpoints
 1. Start Quiz Session
 POST /api/quiz/start
