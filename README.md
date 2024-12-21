@@ -1,4 +1,4 @@
-# Project Title: Quiz Application Backend
+#  Quiz Application Backend
 
 ## Overview
 This project is a Quiz Application designed to test users on Indian General Knowledge. It allows users to:
