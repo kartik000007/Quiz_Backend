@@ -75,7 +75,8 @@ json<br>
 "optionA": "Indira Gandhi",<br>
 "optionB": "Sarojini Naidu",<br>
 "optionC": "Pratibha Patil",<br>
-"optionD": "Sushma Swaraj" v
+"optionD": "Sushma Swaraj"<br>
+
 }, <br>
 { "id": 26, <br>
 "text": "Which Indian state is the largest producer of tea?", <br>
@@ -86,10 +87,8 @@ json<br>
 }<br>
 ] <br>
 <br><br>
-3. Submit Answers POST /api/quiz/submit<br><br>
-<br>
-Request Body:<br>
-json <br>
+3. Submit Answers POST /api/quiz/submit<br>
+Request Body:json <br>
 { <br>
 "sessionId": 1,<br>
 "answers":<br>
@@ -100,6 +99,7 @@ json <br>
 "26": "Assam", <br>
 }<br>
 }<br>
+<br>
 Response: json<br>
 { <br>
 "correctAnswers": 3, <br>
