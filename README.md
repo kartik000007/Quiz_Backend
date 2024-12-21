@@ -23,10 +23,10 @@ API Endpoints
 
 
 Start Quiz Session<br>
-POST /api/quiz/start
 <br>
-Request Body:<br>
-json<br>
+1.POST /api/quiz/start
+<br><br>
+Request Body:json <br>
 <br>{
 <br>"userId": 1,
 <br>"difficulty": "MEDIUM",
@@ -34,17 +34,17 @@ json<br>
 <br>}
 <br>
 <br>
-Response:<br>
-json<br>
+Response:json<br>
 {<br>
 "sessionId": 1,<br>
 "difficulty": "MEDIUM",<br>
 "questionCount": 5<br>
 }<br>
+<br>
 2. Fetch Random Questions<br>
+<br>
 GET /api/quiz/question?sessionId=1<br>
-Response:<br>
-json<br>
+Request Body:json <br>
 [<br>
 {<br>
 "id": 34,<br>
