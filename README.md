@@ -19,53 +19,73 @@ spring.h2.console.enabled=true<br>
 <br>
 The application will be available at: http://localhost:8080<br>
 <br>
-API Endpoints
-1. Start Quiz Session
-POST /api/quiz/start
+API Endpoints<br>
+<br>
+1. Start Quiz Session<br>
 
-Request Body:
-
-json
-Copy code
-{
-  "userId": 1,
-  "difficulty": "EASY",
-  "questionCount": 10
-}
-Response:
-
-json
-Copy code
-{
-  "sessionId": 1,
-  "difficulty": "EASY",
-  "questionCount": 10
-}
-2. Fetch Random Questions
-GET /api/quiz/question?sessionId=1
-
-Response:
-
-json
-Copy code
-[
-  {
-    "id": 101,
-    "text": "What is the capital of India?",
-    "optionA": "Mumbai",
-    "optionB": "Delhi",
-    "optionC": "Kolkata",
-    "optionD": "Chennai"
+POST /api/quiz/start<br>
+<br>
+Request Body:<br>
+json<br>
+{<br>
+  "userId": 1,<br>
+  "difficulty": "MEDIUM",<br>
+  "questionCount": 5<br>
+}<br>
+Response:<br>
+<br>
+json<br>
+<br>
+{<br>
+  "sessionId": 1,<br>
+  "difficulty": "MEDIUM",<br>
+  "questionCount": 5<br>
+}<br>
+2. Fetch Random Questions<br>
+GET /api/quiz/question?sessionId=1<br>
+Response:<br>
+json<br>
+[<br>
+  {<br>
+    "id": 34,<br>
+    "text": "Who wrote the book 'India Wins Freedom'?",<br>
+    "optionA": "Jawaharlal Nehru",<br>
+    "optionB": "Maulana Abul Kalam Azad",<br>
+    "optionC": "Mahatma Gandhi",<br>
+    "optionD": "Sardar Patel"<br>
+  },<br>
+  {<br>
+    "id": 27,
+    "text": "Which state in India is known as the 'Spice Garden'?",
+    "optionA": "Tamil Nadu",
+    "optionB": "Kerala",
+    "optionC": "Karnataka",
+    "optionD": "Andhra Pradesh"
   },
   {
-    "id": 102,
-    "text": "Who was the first President of India?",
-    "optionA": "Rajendra Prasad",
-    "optionB": "Jawaharlal Nehru",
-    "optionC": "Sarvepalli Radhakrishnan",
-    "optionD": "Indira Gandhi"
-  }
-  // end more question.......
+    "id": 44,
+    "text": "What is the official name of India as per the Constitution?",
+    "optionA": "Hindustan",
+    "optionB": "Republic of India",
+    "optionC": "Bharat",
+    "optionD": "Union of India"
+  },
+  {
+    "id": 48,
+    "text": "Who was the first woman Prime Minister of India?",
+    "optionA": "Indira Gandhi",
+    "optionB": "Sarojini Naidu",
+    "optionC": "Pratibha Patil",
+    "optionD": "Sushma Swaraj"
+  },
+  {
+    "id": 26,
+    "text": "Which Indian state is the largest producer of tea?",
+    "optionA": "West Bengal",
+    "optionB": "Kerala",
+    "optionC": "Assam",
+    "optionD": "Himachal Pradesh"
+  },
 ]
 3. Submit Answers
 POST /api/quiz/submit
@@ -77,19 +97,19 @@ Copy code
 {
   "sessionId": 1,
   "answers": {
-    "101": "Delhi",
-    "102": "Rajendra Prasad"
-    .....
-    till the 10 answer
-  }
+    "34": "Maulana Abul Kalam Azad",
+    "27": "",
+    "44": "Republic of India",
+    "48": "Sarojini Naidu",
+    "26": "Assam",
+    }
 }
 Response:
-
 json
-Copy code
+
 {
-  "correctAnswers": 10,
-  "notAttempted": 0
+  "correctAnswers": 3,
+  "notAttempted": 1
 }
 4. Get Quiz Summary
 GET /api/quiz/summary?userId=1
@@ -100,11 +120,11 @@ json
 Copy code
 {
   "sessionId": 1,
-  "totalQuestions": 10,
-  "correctAnswers": 8,
-  "notAttempted": 2,
-  "score": 80,
-  "remark": "Excellent"
+  "totalQuestions": 5,
+  "correctAnswers": 3,
+  "notAttempted": 1,
+  "score": 60,
+  "remark": "Good"
 }
 Seed Data
 The application preloads the following sample data into the database upon startup:
