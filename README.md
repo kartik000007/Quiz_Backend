@@ -19,131 +19,107 @@ spring.h2.console.enabled=true<br>
 <br>
 The application will be available at: http://localhost:8080<br>
 <br>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API Documentation</title>
-</head>
-<body>
-    <h1>API Endpoints</h1>
+API Endpoints
 
-    1. Start Quiz Session
-    <strong>POST</strong>/api/quiz/start
 
-    Request Body:
-    
-{
-  "userId": 1,
-  "difficulty": "MEDIUM",
-  "questionCount": 5
-}
-    </code></pre>
+Start Quiz Session<br>
+POST /api/quiz/start
+<br>
+Request Body:<br>
+json<br>
+<br>{
+<br>"userId": 1,
+<br>"difficulty": "MEDIUM",
+<br>"questionCount": 5
+<br>}
+<br>
+<br>
+Response:<br>
+json<br>
+{<br>
+"sessionId": 1,<br>
+"difficulty": "MEDIUM",<br>
+"questionCount": 5<br>
+}<br>
+2. Fetch Random Questions<br>
+GET /api/quiz/question?sessionId=1<br>
+Response:<br>
+json<br>
+[<br>
+{<br>
+"id": 34,<br>
+"text": "Who wrote the book 'India Wins Freedom'?",<br>
+"optionA": "Jawaharlal Nehru",<br>
+"optionB": "Maulana Abul Kalam Azad",<br>
+"optionC": "Mahatma Gandhi",<br>
+"optionD": "Sardar Patel"<br>
+},<br>
+{<br>
+"id": 27,<br>
+"text": "Which state in India is known as the 'Spice Garden'?", <br>
+"optionA": "Tamil Nadu", <br>
+"optionB": "Kerala", <br>
+"optionC": "Karnataka",<br>
+"optionD": "Andhra Pradesh"<br>
+},<br>
+{ <br>
+"id": 44,<br>
+"text": "What is the official name of India as per the Constitution?",<br>
+"optionA": "Hindustan",<br>
+"optionB": "Republic of India",<br>
+"optionC": "Bharat",<br>
+"optionD": "Union of India" <br>
+},<br>
+{ "id": 48,<br>
+"text": "Who was the first woman Prime Minister of India?",<br>
+"optionA": "Indira Gandhi",<br>
+"optionB": "Sarojini Naidu",<br>
+"optionC": "Pratibha Patil",<br>
+"optionD": "Sushma Swaraj" v
+}, <br>
+{ "id": 26, <br>
+"text": "Which Indian state is the largest producer of tea?", <br>
+"optionA": "West Bengal",<br>
+"optionB": "Kerala",<br>
+"optionC": "Assam", <br>
+"optionD": "Himachal Pradesh" <br>
+}<br>
+] <br>
+<br><br>
+3. Submit Answers POST /api/quiz/submit<br><br>
+<br>
+Request Body:<br>
+json <br>
+{ <br>
+"sessionId": 1,<br>
+"answers":<br>
+{ "34": "Maulana Abul Kalam Azad", <br>
+"27": "",<br>
+"44": "Republic of India",<br>
+"48": "Sarojini Naidu", <br>
+"26": "Assam", <br>
+}<br>
+}<br>
+Response: json<br>
+{ <br>
+"correctAnswers": 3, <br>
+"notAttempted": 1 <br>
+}<br>
+<br><br>
+4. Get Quiz Summary GET /api/quiz/summary?userId=1<br>
+<br>
+Response:json <br>
+{<br>
+"sessionId": 1,<br>
+"totalQuestions": 5,<br>
+"correctAnswers": 3,<br>
+"notAttempted": 1, <br>
+"score": 60, <br>
+"remark": "Good"<br> 
+}<br>
+<br>
+Seed Data The application preloads the following sample data into the database upon startup:
 
-    <h3>Response:</h3>
-    <pre><code>
-{
-  "sessionId": 1,
-  "difficulty": "MEDIUM",
-  "questionCount": 5
-}
-    </code></pre>
+User: kartik 
 
-    <h2>2. Fetch Random Questions</h2>
-    <p><strong>GET</strong> <code>/api/quiz/question?sessionId=1</code></p>
-
-    <h3>Response:</h3>
-    <pre><code>
-[
-  {
-    "id": 34,
-    "text": "Who wrote the book 'India Wins Freedom'?",
-    "optionA": "Jawaharlal Nehru",
-    "optionB": "Maulana Abul Kalam Azad",
-    "optionC": "Mahatma Gandhi",
-    "optionD": "Sardar Patel"
-  },
-  {
-    "id": 27,
-    "text": "Which state in India is known as the 'Spice Garden'?",
-    "optionA": "Tamil Nadu",
-    "optionB": "Kerala",
-    "optionC": "Karnataka",
-    "optionD": "Andhra Pradesh"
-  },
-  {
-    "id": 44,
-    "text": "What is the official name of India as per the Constitution?",
-    "optionA": "Hindustan",
-    "optionB": "Republic of India",
-    "optionC": "Bharat",
-    "optionD": "Union of India"
-  },
-  {
-    "id": 48,
-    "text": "Who was the first woman Prime Minister of India?",
-    "optionA": "Indira Gandhi",
-    "optionB": "Sarojini Naidu",
-    "optionC": "Pratibha Patil",
-    "optionD": "Sushma Swaraj"
-  },
-  {
-    "id": 26,
-    "text": "Which Indian state is the largest producer of tea?",
-    "optionA": "West Bengal",
-    "optionB": "Kerala",
-    "optionC": "Assam",
-    "optionD": "Himachal Pradesh"
-  }
-]
-    </code></pre>
-
-    <h2>3. Submit Answers</h2>
-    <p><strong>POST</strong> <code>/api/quiz/submit</code></p>
-
-    <h3>Request Body:</h3>
-    <pre><code>
-{
-  "sessionId": 1,
-  "answers": {
-    "34": "Maulana Abul Kalam Azad",
-    "27": "",
-    "44": "Republic of India",
-    "48": "Sarojini Naidu",
-    "26": "Assam"
-  }
-}
-    </code></pre>
-
-    <h3>Response:</h3>
-    <pre><code>
-{
-  "correctAnswers": 3,
-  "notAttempted": 1
-}
-    </code></pre>
-
-    <h2>4. Get Quiz Summary</h2>
-    <p><strong>GET</strong> <code>/api/quiz/summary?userId=1</code></p>
-
-    <h3>Response:</h3>
-    <pre><code>
-{
-  "sessionId": 1,
-  "totalQuestions": 5,
-  "correctAnswers": 3,
-  "notAttempted": 1,
-  "score": 60,
-  "remark": "Good"
-}
-    </code></pre>
-
-    <h2>Seed Data</h2>
-    <p>The application preloads the following sample data into the database upon startup:</p>
-    <ul>
-        <li><strong>User</strong>: kartik</li>
-        <li><strong>Questions</strong>: Indian general knowledge questions like capitals, history, geography, etc.</li>
-    </ul>
-</body>
-</html>
+Questions: Indian general knowledge questions like capitals, history, geography, etc.
