@@ -1,126 +1,177 @@
-# Quiz_Backend
+# Project Title: Quiz Application Backend
 
-This project is a Quiz Application designed to test users on Indian General Knowledge. It allows users to start quiz sessions, fetch random questions, submit answers, and view summaries of their quiz performance.
+## Overview
+This project is a Quiz Application designed to test users on Indian General Knowledge. It allows users to:
 
-Features:
+1. Start quiz sessions.
+2. Fetch random questions.
+3. Submit answers.
+4. View summaries of their quiz performance.
 
-Random Question Generation: Questions are fetched randomly from the database based on the difficulty level.
-Session-Based Quizzes: Each user can start a quiz session with a specified number of questions and difficulty level.
-Answer Submission: Users can submit their answers, and their performance is evaluated.
-Quiz Summary: A detailed summary is provided at the end of the quiz.
+## Features
+- **Random Question Generation**: Fetch questions randomly from the database based on the difficulty level.
+- **Session-Based Quizzes**: Users can start a quiz session with a specified number of questions and difficulty level.
+- **Answer Submission**: Evaluate performance based on submitted answers.
+- **Quiz Summary**: Provide a detailed summary at the end of the quiz.
 
-Update the database configuration in src/main/resources/application.properties:
-<br>
-properties<br>
-spring.datasource.url=jdbc:h2:mem:GK_Quiz_DB<br>
-spring.datasource.driverClassName=org.h2.Driver<br>
-spring.h2.console.enabled=true<br>
-<br>
-<br>
-The application will be available at: http://localhost:8080<br>
-<br>
-API Endpoints
+## Prerequisites
+
+Before running the project, ensure you have the following installed:
+
+- Java 11+
+- Maven
+- H2 Database (in-memory database for development)
+
+## Installation
 
 
-Start Quiz Session<br>
-<br>
-1.POST /api/quiz/start
-<br><br>
-Request Body:json <br>
-<br>{<br>
- &ensp;&ensp;"userId": 1,<br>
- &ensp;&ensp;"difficulty": "MEDIUM",<br>
- &ensp;&ensp;"questionCount": 5
-<br>}
-<br>
-<br>
-Response:json<br>
-{<br>
-  &ensp;&ensp; "sessionId": 1,<br>
-   &ensp;&ensp; "difficulty": "MEDIUM",<br>
-   &ensp;&ensp; "questionCount": 5<br>
-}<br>
 
-2. Fetch Random Questions<br>
-<br>
-GET /api/quiz/question?sessionId=1<br>
-Request Body:json <br>
-[<br>
- &ensp;&ensp;{<br>
- &ensp;&ensp;"id": 34,<br>
- &ensp;&ensp;"text": "Who wrote the book 'India Wins Freedom'?",<br>
- &ensp;&ensp;"optionA": "Jawaharlal Nehru",<br>
- &ensp;&ensp;"optionB": "Maulana Abul Kalam Azad",<br>
- &ensp;&ensp;"optionC": "Mahatma Gandhi",<br>
- &ensp;&ensp;"optionD": "Sardar Patel"<br>
- &ensp;&ensp;},<br>
- &ensp;&ensp;{<br>
- &ensp;&ensp;"id": 27,<br>
-&ensp;&ensp;"text": "Which state in India is known as the 'Spice Garden'?", <br>
-&ensp;&ensp;"optionA": "Tamil Nadu", <br>
-&ensp;&ensp;"optionB": "Kerala", <br>
-&ensp;&ensp;"optionC": "Karnataka",<br>
-&ensp;&ensp;"optionD": "Andhra Pradesh"<br>
-&ensp;&ensp;},<br>
-&ensp;&ensp;{ <br>
-&ensp;&ensp;"id": 44,<br>
-&ensp;&ensp;"text": "What is the official name of India as per the Constitution?",<br>
-&ensp;&ensp;"optionA": "Hindustan",<br>
-&ensp;&ensp;"optionB": "Republic of India",<br>
-&ensp;&ensp;"optionC": "Bharat",<br>
-&ensp;&ensp;"optionD": "Union of India" <br>
-&ensp;&ensp;},<br>
-&ensp;&ensp;{ "id": 48,<br>
-&ensp;&ensp;"text": "Who was the first woman Prime Minister of India?",<br>
-&ensp;&ensp;"optionA": "Indira Gandhi",<br>
-&ensp;&ensp;"optionB": "Sarojini Naidu",<br>
-&ensp;&ensp;"optionC": "Pratibha Patil",<br>
-&ensp;&ensp;"optionD": "Sushma Swaraj"<br>
+1. Set up database configuration:
+   - Update `src/main/resources/application.properties` with the following:
+     ```properties
+     spring.datasource.url=jdbc:h2:mem:GK_Quiz_DB
+     spring.datasource.driverClassName=org.h2.Driver
+     spring.h2.console.enabled=true
+     spring.jpa.hibernate.ddl-auto=update
+     ```
 
-&ensp;&ensp;}, <br>
-&ensp;&ensp;{ "id": 26, <br>
-&ensp;&ensp;"text": "Which Indian state is the largest producer of tea?", <br>
-&ensp;&ensp;"optionA": "West Bengal",<br>
-&ensp;&ensp;"optionB": "Kerala",<br>
-&ensp;&ensp;"optionC": "Assam", <br>
-&ensp;&ensp;"optionD": "Himachal Pradesh" <br>
-&ensp;&ensp;}<br>
-] <br>
-<br><br>
-3. Submit Answers POST /api/quiz/submit<br>
-Request Body:json <br>
-{ <br>
-&ensp;&ensp;"sessionId": 1,<br>
-&ensp;&ensp;"answers":<br>
-&ensp;&ensp;{<br>
-&ensp;&ensp; "34": "Maulana Abul Kalam Azad", <br>
-&ensp;&ensp;"27": "",<br>
-&ensp;&ensp;"44": "Republic of India",<br>
-&ensp;&ensp;"48": "Sarojini Naidu", <br>
-&ensp;&ensp;"26": "Assam", <br>
-&ensp;&ensp;}<br>
-}<br>
-<br>
-Response: json<br>
-{ <br>
-&ensp;&ensp;"correctAnswers": 3, <br>
-&ensp;&ensp;"notAttempted": 1 <br>
-}<br>
-<br><br>
-4. Get Quiz Summary GET /api/quiz/summary?userId=1<br>
-<br>
-Response:json <br>
-{<br>
-&ensp;&ensp;"sessionId": 1,<br>
-&ensp;&ensp;"totalQuestions": 5,<br>
-&ensp;&ensp;"correctAnswers": 3,<br>
-&ensp;&ensp;"notAttempted": 1, <br>
-&ensp;&ensp;"score": 60, <br>
-&ensp;&ensp;"remark": "Good"<br> 
-}<br>
-<br>
-Seed Data The application preloads the following sample data into the database upon startup:
+## Usage
 
-User: kartik 
+### Running the Application
+Start the application using:
+```bash
+mvn spring-boot:run
+```
 
-Questions: Indian general knowledge questions like capitals, history, geography, etc.
+The application will be available at: `http://localhost:8080`.
+
+### API Endpoints
+
+#### 1. **Start Quiz Session**
+   - Endpoint: `POST /api/quiz/start`
+   - Request Body (JSON):
+     ```json
+     {
+       "userId": 1,
+       "difficulty": "MEDIUM",
+       "questionCount": 5
+     }
+     ```
+   - Response (JSON):
+     ```json
+     {
+       "sessionId": 1,
+       "difficulty": "MEDIUM",
+       "questionCount": 5
+     }
+     ```
+
+#### 2. **Fetch Random Questions**
+   - Endpoint: `GET /api/quiz/question?sessionId=1`
+   - Response (JSON):
+     ```json
+     [
+       {
+         "id": 34,
+         "text": "Who wrote the book 'India Wins Freedom'?",
+         "optionA": "Jawaharlal Nehru",
+         "optionB": "Maulana Abul Kalam Azad",
+         "optionC": "Mahatma Gandhi",
+         "optionD": "Sardar Patel"
+       },
+       {
+         "id": 27,
+         "text": "Which state in India is known as the 'Spice Garden'?",
+         "optionA": "Tamil Nadu",
+         "optionB": "Kerala",
+         "optionC": "Karnataka",
+         "optionD": "Andhra Pradesh"
+       },
+       {
+         "id": 44,
+         "text": "What is the official name of India as per the Constitution?",
+         "optionA": "Hindustan",
+         "optionB": "Republic of India",
+         "optionC": "Bharat",
+         "optionD": "Union of India"
+       },
+       {
+         "id": 48,
+         "text": "Who was the first woman Prime Minister of India?",
+         "optionA": "Indira Gandhi",
+         "optionB": "Sarojini Naidu",
+         "optionC": "Pratibha Patil",
+         "optionD": "Sushma Swaraj"
+       },
+       {
+         "id": 26,
+         "text": "Which Indian state is the largest producer of tea?",
+         "optionA": "West Bengal",
+         "optionB": "Kerala",
+         "optionC": "Assam",
+         "optionD": "Himachal Pradesh"
+       }
+     ]
+     ```
+
+#### 3. **Submit Answers**
+   - Endpoint: `POST /api/quiz/submit`
+   - Request Body (JSON):
+     ```json
+     {
+       "sessionId": 1,
+       "answers": {
+         "34": "Maulana Abul Kalam Azad",
+         "27": "",
+         "44": "Republic of India",
+         "48": "Sarojini Naidu",
+         "26": "Assam"
+       }
+     }
+     ```
+   - Response (JSON):
+     ```json
+     {
+       "correctAnswers": 3,
+       "notAttempted": 1
+     }
+     ```
+
+#### 4. **Get Quiz Summary**
+   - Endpoint: `GET /api/quiz/summary?userId=1`
+   - Response (JSON):
+     ```json
+     {
+       "sessionId": 1,
+       "totalQuestions": 5,
+       "correctAnswers": 3,
+       "notAttempted": 1,
+       "score": 60,
+       "remark": "Good"
+     }
+     ```
+
+## Seed Data
+The application preloads the following sample data into the database upon startup:
+
+- **User**: `kartik`
+- **Questions**: Indian general knowledge questions (capitals, history, geography, etc.).
+
+## Project Structure
+```
+quiz_App/
+|-- src/
+|   |-- main/
+|       |-- java/com/Quiz_App/quiz/App/
+|       |       |-- controllers/
+|       |       |-- services/
+|       |       |-- models/
+|       |       |-- enums/
+|       |       |-- repository/
+|       |       |-- dto
+|       |       |-- exception/
+|       |-- resources/
+|           |-- application.properties
+|-- pom.xml
+|-- README.md
+```
