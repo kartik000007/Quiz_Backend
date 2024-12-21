@@ -27,95 +27,96 @@ Start Quiz Session<br>
 1.POST /api/quiz/start
 <br><br>
 Request Body:json <br>
-<br>{
-<br>"userId": 1,
-<br>"difficulty": "MEDIUM",
-<br>"questionCount": 5
+<br>{<br>
+ &ensp;&ensp;"userId": 1,<br>
+ &ensp;&ensp;"difficulty": "MEDIUM",<br>
+ &ensp;&ensp;"questionCount": 5
 <br>}
 <br>
 <br>
 Response:json<br>
 {<br>
-"sessionId": 1,<br>
-"difficulty": "MEDIUM",<br>
-"questionCount": 5<br>
+  &ensp;&ensp; "sessionId": 1,<br>
+   &ensp;&ensp; "difficulty": "MEDIUM",<br>
+   &ensp;&ensp; "questionCount": 5<br>
 }<br>
-<br>
+
 2. Fetch Random Questions<br>
 <br>
 GET /api/quiz/question?sessionId=1<br>
 Request Body:json <br>
 [<br>
-{<br>
-"id": 34,<br>
-"text": "Who wrote the book 'India Wins Freedom'?",<br>
-"optionA": "Jawaharlal Nehru",<br>
-"optionB": "Maulana Abul Kalam Azad",<br>
-"optionC": "Mahatma Gandhi",<br>
-"optionD": "Sardar Patel"<br>
-},<br>
-{<br>
-"id": 27,<br>
-"text": "Which state in India is known as the 'Spice Garden'?", <br>
-"optionA": "Tamil Nadu", <br>
-"optionB": "Kerala", <br>
-"optionC": "Karnataka",<br>
-"optionD": "Andhra Pradesh"<br>
-},<br>
-{ <br>
-"id": 44,<br>
-"text": "What is the official name of India as per the Constitution?",<br>
-"optionA": "Hindustan",<br>
-"optionB": "Republic of India",<br>
-"optionC": "Bharat",<br>
-"optionD": "Union of India" <br>
-},<br>
-{ "id": 48,<br>
-"text": "Who was the first woman Prime Minister of India?",<br>
-"optionA": "Indira Gandhi",<br>
-"optionB": "Sarojini Naidu",<br>
-"optionC": "Pratibha Patil",<br>
-"optionD": "Sushma Swaraj"<br>
+ &ensp;&ensp;{<br>
+ &ensp;&ensp;"id": 34,<br>
+ &ensp;&ensp;"text": "Who wrote the book 'India Wins Freedom'?",<br>
+ &ensp;&ensp;"optionA": "Jawaharlal Nehru",<br>
+ &ensp;&ensp;"optionB": "Maulana Abul Kalam Azad",<br>
+ &ensp;&ensp;"optionC": "Mahatma Gandhi",<br>
+ &ensp;&ensp;"optionD": "Sardar Patel"<br>
+ &ensp;&ensp;},<br>
+ &ensp;&ensp;{<br>
+ &ensp;&ensp;"id": 27,<br>
+&ensp;&ensp;"text": "Which state in India is known as the 'Spice Garden'?", <br>
+&ensp;&ensp;"optionA": "Tamil Nadu", <br>
+&ensp;&ensp;"optionB": "Kerala", <br>
+&ensp;&ensp;"optionC": "Karnataka",<br>
+&ensp;&ensp;"optionD": "Andhra Pradesh"<br>
+&ensp;&ensp;},<br>
+&ensp;&ensp;{ <br>
+&ensp;&ensp;"id": 44,<br>
+&ensp;&ensp;"text": "What is the official name of India as per the Constitution?",<br>
+&ensp;&ensp;"optionA": "Hindustan",<br>
+&ensp;&ensp;"optionB": "Republic of India",<br>
+&ensp;&ensp;"optionC": "Bharat",<br>
+&ensp;&ensp;"optionD": "Union of India" <br>
+&ensp;&ensp;},<br>
+&ensp;&ensp;{ "id": 48,<br>
+&ensp;&ensp;"text": "Who was the first woman Prime Minister of India?",<br>
+&ensp;&ensp;"optionA": "Indira Gandhi",<br>
+&ensp;&ensp;"optionB": "Sarojini Naidu",<br>
+&ensp;&ensp;"optionC": "Pratibha Patil",<br>
+&ensp;&ensp;"optionD": "Sushma Swaraj"<br>
 
-}, <br>
-{ "id": 26, <br>
-"text": "Which Indian state is the largest producer of tea?", <br>
-"optionA": "West Bengal",<br>
-"optionB": "Kerala",<br>
-"optionC": "Assam", <br>
-"optionD": "Himachal Pradesh" <br>
-}<br>
+&ensp;&ensp;}, <br>
+&ensp;&ensp;{ "id": 26, <br>
+&ensp;&ensp;"text": "Which Indian state is the largest producer of tea?", <br>
+&ensp;&ensp;"optionA": "West Bengal",<br>
+&ensp;&ensp;"optionB": "Kerala",<br>
+&ensp;&ensp;"optionC": "Assam", <br>
+&ensp;&ensp;"optionD": "Himachal Pradesh" <br>
+&ensp;&ensp;}<br>
 ] <br>
 <br><br>
 3. Submit Answers POST /api/quiz/submit<br>
 Request Body:json <br>
 { <br>
-"sessionId": 1,<br>
-"answers":<br>
-{ "34": "Maulana Abul Kalam Azad", <br>
-"27": "",<br>
-"44": "Republic of India",<br>
-"48": "Sarojini Naidu", <br>
-"26": "Assam", <br>
-}<br>
+&ensp;&ensp;"sessionId": 1,<br>
+&ensp;&ensp;"answers":<br>
+&ensp;&ensp;{<br>
+&ensp;&ensp; "34": "Maulana Abul Kalam Azad", <br>
+&ensp;&ensp;"27": "",<br>
+&ensp;&ensp;"44": "Republic of India",<br>
+&ensp;&ensp;"48": "Sarojini Naidu", <br>
+&ensp;&ensp;"26": "Assam", <br>
+&ensp;&ensp;}<br>
 }<br>
 <br>
 Response: json<br>
 { <br>
-"correctAnswers": 3, <br>
-"notAttempted": 1 <br>
+&ensp;&ensp;"correctAnswers": 3, <br>
+&ensp;&ensp;"notAttempted": 1 <br>
 }<br>
 <br><br>
 4. Get Quiz Summary GET /api/quiz/summary?userId=1<br>
 <br>
 Response:json <br>
 {<br>
-"sessionId": 1,<br>
-"totalQuestions": 5,<br>
-"correctAnswers": 3,<br>
-"notAttempted": 1, <br>
-"score": 60, <br>
-"remark": "Good"<br> 
+&ensp;&ensp;"sessionId": 1,<br>
+&ensp;&ensp;"totalQuestions": 5,<br>
+&ensp;&ensp;"correctAnswers": 3,<br>
+&ensp;&ensp;"notAttempted": 1, <br>
+&ensp;&ensp;"score": 60, <br>
+&ensp;&ensp;"remark": "Good"<br> 
 }<br>
 <br>
 Seed Data The application preloads the following sample data into the database upon startup:
